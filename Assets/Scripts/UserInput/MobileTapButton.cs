@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Scripts.UserInput.MobileInput
+namespace Scripts.UserInput
 {
     public class MobileTapButton : MobileInputBase
     {

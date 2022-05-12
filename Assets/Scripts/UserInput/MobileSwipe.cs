@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Scripts.UserInput.MobileInput
+namespace Scripts.UserInput
 {
     public class MobileSwipe : MonoBehaviour
     {
@@ -41,43 +41,43 @@ namespace Scripts.UserInput.MobileInput
             Debug.Log(action);
         }
     }
-}
 
-internal class TouchSet
-{
-    private Vector2 _first;
-    private Vector2 _current;
-
-    public TouchSet(Vector2 pos)
+    internal class TouchSet
     {
-        _first = pos;
-        _current = pos;
-    }
+        private Vector2 _first;
+        private Vector2 _current;
 
-    public void SetPos(Vector2 pos)
-    {
-        _current = pos;
-    }
-
-    public TouchAction GetAction(float dragMin)
-    {
-        float horz = Mathf.Abs(_current.x - _first.x);
-        float vert = Mathf.Abs(_current.y - _first.y);
-        if (horz > dragMin || vert > dragMin) {
-            if (horz > vert) {
-                return _current.x > _first.x ? TouchAction.SwipeRight : TouchAction.SwipeLeft;
-            }
-            return _current.y > _first.y ? TouchAction.SwipeUp : TouchAction.SwipeDown;
+        public TouchSet(Vector2 pos)
+        {
+            _first = pos;
+            _current = pos;
         }
-        return TouchAction.Tap;
-    }
-}
 
-internal enum TouchAction
-{
-    SwipeLeft,
-    SwipeUp,
-    SwipeDown,
-    SwipeRight,
-    Tap
+        public void SetPos(Vector2 pos)
+        {
+            _current = pos;
+        }
+
+        public TouchAction GetAction(float dragMin)
+        {
+            float horz = Mathf.Abs(_current.x - _first.x);
+            float vert = Mathf.Abs(_current.y - _first.y);
+            if (horz > dragMin || vert > dragMin) {
+                if (horz > vert) {
+                    return _current.x > _first.x ? TouchAction.SwipeRight : TouchAction.SwipeLeft;
+                }
+                return _current.y > _first.y ? TouchAction.SwipeUp : TouchAction.SwipeDown;
+            }
+            return TouchAction.Tap;
+        }
+    }
+
+    internal enum TouchAction
+    {
+        SwipeLeft,
+        SwipeUp,
+        SwipeDown,
+        SwipeRight,
+        Tap
+    }
 }

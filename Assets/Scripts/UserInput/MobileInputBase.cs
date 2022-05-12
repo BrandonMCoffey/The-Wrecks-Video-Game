@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Scripts.UserInput.MobileInput
+namespace Scripts.UserInput
 {
     public abstract class MobileInputBase : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
     {
