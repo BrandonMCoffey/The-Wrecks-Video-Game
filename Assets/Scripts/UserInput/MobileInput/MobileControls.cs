@@ -2,24 +2,25 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Scripts.MobileInput
+namespace Scripts.UserInput.MobileInput
 {
     public class MobileControls : MonoBehaviour
     {
-        [HideInInspector]
         [SerializeField] private Canvas _canvas;
-        private List<ClickTracker> _buttons = new List<ClickTracker>();
+        private List<MobileInputBase> _buttons = new List<MobileInputBase>();
 
         public static MobileControls Instance;
+
+        public Canvas Canvas => _canvas;
 
         private void Awake()
         {
             Instance = this;
 
-            _canvas = GetComponent<Canvas>();
+            if (_canvas == null) _canvas = GetComponent<Canvas>();
         }
 
-        public int AddButton(ClickTracker button)
+        public int AddButton(MobileInputBase button)
         {
             _buttons.Add(button);
 
